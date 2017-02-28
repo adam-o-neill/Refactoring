@@ -56,9 +56,9 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 	private static final DecimalFormat fieldFormat = new DecimalFormat("0.00");
 	// hold object start position in file
 	private long currentByteStart = 0;
-	private RandomFile application = new RandomFile();
+	private final RandomFile application = new RandomFile();
 	// display files in File Chooser only with extension .dat
-	private FileNameExtensionFilter datfilter = new FileNameExtensionFilter("dat files (*.dat)", "dat");
+	private final FileNameExtensionFilter datfilter = new FileNameExtensionFilter("dat files (*.dat)", "dat");
 	// hold file name and path for current file in use
 	private File file;
 	// holds true or false if any changes are made for text fields
@@ -71,20 +71,20 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 			saveChange, cancelChange;
 	private JComboBox<String> genderCombo, departmentCombo, fullTimeCombo;
 	private JTextField idField, ppsField, surnameField, firstNameField, salaryField;
-	private static EmployeeDetails frame = new EmployeeDetails();
+	private static final EmployeeDetails frame = new EmployeeDetails();
 	// font for labels, text fields and combo boxes
-	Font font1 = new Font("SansSerif", Font.BOLD, 16);
+	final Font font1 = new Font("SansSerif", Font.BOLD, 16);
 	// holds automatically generated file name
-	String generatedFileName;
+	private String generatedFileName;
 	// holds current Employee object
 	Employee currentEmployee;
 	JTextField searchByIdField, searchBySurnameField;
 	// gender combo box values
-	String[] gender = { "", "M", "F" };
+	final String[] gender = { "", "M", "F" };
 	// department combo box values
-	String[] department = { "", "Administration", "Production", "Transport", "Management" };
+	final String[] department = { "", "Administration", "Production", "Transport", "Management" };
 	// full time combo box values
-	String[] fullTime = { "", "Yes", "No" };
+	final String[] fullTime = { "", "Yes", "No" };
 
 	// initialize menu bar
 	private JMenuBar menuBar() {

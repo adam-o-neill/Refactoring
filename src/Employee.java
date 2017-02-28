@@ -15,7 +15,7 @@ public class Employee{
 	private boolean fullTime;
 
 	// Create Employee with no details
-	public Employee() {
+	Employee() {
 		this.employeeId = 0;
 		this.pps = "";
 		this.surname = "";
@@ -73,35 +73,35 @@ public class Employee{
 	}
 
 	// Setter methods
-	public void setEmployeeId(int employeeId) {
+	void setEmployeeId(int employeeId) {
 		this.employeeId = employeeId;
 	}
 	
-	public void setPps(String pps) {
+	void setPps(String pps) {
 		this.pps = pps;
 	}
 
-	public void setSurname(String surname) {
+	void setSurname(String surname) {
 		this.surname = surname;
 	}
 
-	public void setFirstName(String firstName) {
+	void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
 
-	public void setGender(char gender) {
+	void setGender(char gender) {
 		this.gender = gender;
 	}
 
-	public void setDepartment(String department) {
+	void setDepartment(String department) {
 		this.department = department;
 	}
 
-	public void setSalary(double salary) {
+	void setSalary(double salary) {
 		this.salary = salary;
 	}
 
-	public void setFullTime(boolean fullTime) {
+	void setFullTime(boolean fullTime) {
 		this.fullTime = fullTime;
 	}
 

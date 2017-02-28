@@ -26,10 +26,10 @@ import javax.swing.table.DefaultTableModel;
 
 import net.miginfocom.swing.MigLayout;
 
-public class EmployeeSummaryDialog extends JDialog implements ActionListener {
+class EmployeeSummaryDialog extends JDialog implements ActionListener {
 	// vector with all Employees details
-	Vector<Object> allEmployees;
-	JButton back;
+	private final Vector<Object> allEmployees;
+	private JButton back;
 	
 	public EmployeeSummaryDialog(Vector<Object> allEmployees) {
 		setTitle("Employee Summary");
@@ -47,7 +47,7 @@ public class EmployeeSummaryDialog extends JDialog implements ActionListener {
 
 	}
 	// initialise container
-	public Container summaryPane() {
+	private Container summaryPane() {
 		JPanel summaryDialog = new JPanel(new MigLayout());
 		JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
 		JTable employeeTable;

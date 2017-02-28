@@ -7,7 +7,7 @@
 import java.io.RandomAccessFile;
 import java.io.IOException;
 
-public class RandomAccessEmployeeRecord extends Employee
+class RandomAccessEmployeeRecord extends Employee
 {  
     public static final int SIZE = 175; // Size of each RandomAccessEmployeeRecord object
 

@@ -21,10 +21,11 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.border.EtchedBorder;
 
-public class SearchByIdDialog extends JDialog implements ActionListener {
-	EmployeeDetails parent;
-	JButton search, cancel;
-	JTextField searchField;
+class SearchByIdDialog extends JDialog implements ActionListener {
+	private final EmployeeDetails parent;
+	private JButton search;
+	private JButton cancel;
+	private JTextField searchField;
 	// constructor for SearchByIdDialog 
 	public SearchByIdDialog(EmployeeDetails parent) {
 		setTitle("Search by Surname");
@@ -43,7 +44,7 @@ public class SearchByIdDialog extends JDialog implements ActionListener {
 	}// end SearchByIdDialog
 	
 	// initialize search container
-	public Container searchPane() {
+	private Container searchPane() {
 		JPanel searchPanel = new JPanel(new GridLayout(3, 1));
 		JPanel textPanel = new JPanel();
 		JPanel buttonPanel = new JPanel();

@@ -10,7 +10,7 @@ import javax.swing.text.BadLocationException;
 import javax.swing.text.PlainDocument;
 // set text field input limits
 class JTextFieldLimit extends PlainDocument {
-  private int limit;
+  private final int limit;
   JTextFieldLimit(int limit) {
     super();
     this.limit = limit;

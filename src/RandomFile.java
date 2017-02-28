@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
-public class RandomFile {
+class RandomFile {
 	private RandomAccessFile output;
 	private RandomAccessFile input;
 
