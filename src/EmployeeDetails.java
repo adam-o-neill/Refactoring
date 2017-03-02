@@ -331,7 +331,7 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 			departmentCombo.setSelectedIndex(countDep);
 			salaryField.setText(format.format(thisEmployee.getSalary()));
 			// set corresponding full time combo box value to current employee
-			if (thisEmployee.getFullTime() == true)
+			if (thisEmployee.getFullTime())
 				fullTimeCombo.setSelectedIndex(1);
 			else
 				fullTimeCombo.setSelectedIndex(2);
@@ -774,11 +774,6 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 
 	// enable text fields for editing
 	public void setEnabled(boolean booleanValue) {
-		boolean search;
-		if (booleanValue)
-			search = false;
-		else
-			search = true;
 		ppsField.setEditable(booleanValue);
 		surnameField.setEditable(booleanValue);
 		firstNameField.setEditable(booleanValue);
@@ -788,10 +783,10 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 		fullTimeCombo.setEnabled(booleanValue);
 		saveChange.setVisible(booleanValue);
 		cancelChange.setVisible(booleanValue);
-		searchByIdField.setEnabled(search);
-		searchBySurnameField.setEnabled(search);
-		searchId.setEnabled(search);
-		searchSurname.setEnabled(search);
+		searchByIdField.setEnabled(!booleanValue);
+		searchBySurnameField.setEnabled(!booleanValue);
+		searchId.setEnabled(!booleanValue);
+		searchSurname.setEnabled(!booleanValue);
 	}// end setEnabled
 
 	// open file
