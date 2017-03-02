@@ -233,16 +233,16 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 		empDetails.add(firstNameField = new JTextField(20), "growx, pushx, wrap");
 
 		empDetails.add(new JLabel("Gender:"), "growx, pushx");
-		empDetails.add(genderCombo = new JComboBox<String>(gender), "growx, pushx, wrap");
+		empDetails.add(genderCombo = new JComboBox<>(gender), "growx, pushx, wrap");
 
 		empDetails.add(new JLabel("Department:"), "growx, pushx");
-		empDetails.add(departmentCombo = new JComboBox<String>(department), "growx, pushx, wrap");
+		empDetails.add(departmentCombo = new JComboBox<>(department), "growx, pushx, wrap");
 
 		empDetails.add(new JLabel("Salary:"), "growx, pushx");
 		empDetails.add(salaryField = new JTextField(20), "growx, pushx, wrap");
 
 		empDetails.add(new JLabel("Full Time:"), "growx, pushx");
-		empDetails.add(fullTimeCombo = new JComboBox<String>(fullTime), "growx, pushx, wrap");
+		empDetails.add(fullTimeCombo = new JComboBox<>(fullTime), "growx, pushx, wrap");
 
 		buttonPanel.add(saveChange = new JButton("Save"));
 		saveChange.addActionListener(this);
@@ -325,7 +325,7 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 	private void displayEmployeeSummaryDialog() {
 
 		if (isSomeoneToDisplay())
-			new EmployeeSummaryDialog(getAllEmloyees());
+			new EmployeeSummaryDialog(getAllEmployees());
 	}
 
 	private void displaySearchByIdDialog() {
@@ -538,8 +538,8 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 		}
 	}
 
-	private Vector<Object> getAllEmloyees() {
-		Vector<Object> allEmployee = new Vector<Object>();
+	private Vector<Object> getAllEmployees() {
+		Vector<Object> allEmployee = new Vector<>();
 		Vector<Object> empDetails;
 		long byteStart = currentByteStart;
 		int firstId;
@@ -548,15 +548,15 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 		firstId = currentEmployee.getEmployeeId();
 
 		do {
-			empDetails = new Vector<Object>();
-			empDetails.addElement(new Integer(currentEmployee.getEmployeeId()));
+			empDetails = new Vector<>();
+			empDetails.addElement(currentEmployee.getEmployeeId());
 			empDetails.addElement(currentEmployee.getPps());
 			empDetails.addElement(currentEmployee.getSurname());
 			empDetails.addElement(currentEmployee.getFirstName());
-			empDetails.addElement(new Character(currentEmployee.getGender()));
+			empDetails.addElement(currentEmployee.getGender());
 			empDetails.addElement(currentEmployee.getDepartment());
-			empDetails.addElement(new Double(currentEmployee.getSalary()));
-			empDetails.addElement(new Boolean(currentEmployee.getFullTime()));
+			empDetails.addElement(currentEmployee.getSalary());
+			empDetails.addElement(currentEmployee.getFullTime());
 
 			allEmployee.addElement(empDetails);
 			nextRecord();
@@ -995,11 +995,7 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 	}
 
 	public static void main(String args[]) {
-		javax.swing.SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
-				createAndShowGUI();
-			}
-		});
+		javax.swing.SwingUtilities.invokeLater(EmployeeDetails::createAndShowGUI);
 	}
 
 	public void changedUpdate(DocumentEvent d) {
