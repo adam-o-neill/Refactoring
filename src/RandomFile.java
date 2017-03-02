@@ -30,16 +30,20 @@ class RandomFile {
 		} // end catch
 
 		finally {
-			try {
-				if (file != null)
-					file.close(); // close file
-			} // end try
-			catch (IOException ioException) {
-				JOptionPane.showMessageDialog(null, "Error closing file!");
-				System.exit(1);
-			} // end catch
+			closeFile(file);
 		} // end finally
 	} // end createFile
+
+	private void closeFile(RandomAccessFile file){
+		try {
+			if (file != null)
+				file.close(); // close file
+		} // end try
+		catch (IOException ioException) {
+			JOptionPane.showMessageDialog(null, "Error closing file!");
+			System.exit(1);
+		} // end catch
+	}
 
 	// Open file for adding or changing records
 	public void openWriteFile(String fileName) {
@@ -54,15 +58,7 @@ class RandomFile {
 
 	// Close file for adding or changing records
 	public void closeWriteFile() {
-		try // close file and exit
-		{
-			if (output != null)
-				output.close();
-		} // end try
-		catch (IOException ioException) {
-			JOptionPane.showMessageDialog(null, "Error closing file!");
-			System.exit(1);
-		} // end catch
+		closeFile(output);
 	} // end closeFile
 
 	// Add records to file
@@ -142,15 +138,7 @@ class RandomFile {
 
 	// Close file
 	public void closeReadFile() {
-		try // close file and exit
-		{
-			if (input != null)
-				input.close();
-		} // end try
-		catch (IOException ioException) {
-			JOptionPane.showMessageDialog(null, "Error closing file!");
-			System.exit(1);
-		} // end catch
+		closeFile(input);
 	} // end method closeFile
 
 	// Get position of first record in file
