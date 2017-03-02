@@ -161,6 +161,7 @@ class RandomFile {
 			input.length();
 		} // end try
 		catch (IOException e) {
+			System.out.print(e.getMessage());
 		}// end catch
 		
 		return byteToStart;
@@ -174,6 +175,7 @@ class RandomFile {
 			byteToStart = input.length() - RandomAccessEmployeeRecord.SIZE;
 		}// end try 
 		catch (IOException e) {
+			System.out.print(e.getMessage());
 		}// end catch
 
 		return byteToStart;
@@ -191,10 +193,10 @@ class RandomFile {
 			else
 				byteToStart = byteToStart + RandomAccessEmployeeRecord.SIZE;
 		} // end try
-		catch (NumberFormatException e) {
+		catch (NumberFormatException | IOException e) {
+			System.out.print(e.getMessage());
 		} // end catch
-		catch (IOException e) {
-		}// end catch
+		// end catch
 		return byteToStart;
 	}// end getFirst
 
@@ -210,10 +212,10 @@ class RandomFile {
 			else
 				byteToStart = byteToStart - RandomAccessEmployeeRecord.SIZE;
 		} // end try
-		catch (NumberFormatException e) {
+		catch (NumberFormatException | IOException e) {
+			System.out.print(e.getMessage());
 		} // end catch
-		catch (IOException e) {
-		}// end catch
+		// end catch
 		return byteToStart;
 	}// end getPrevious
 
@@ -227,6 +229,7 @@ class RandomFile {
 			record.read(input);// Read record from file
 		} // end try
 		catch (IOException e) {
+			System.out.print(e.getMessage());
 		}// end catch
 		
 		thisEmp = record;
@@ -257,6 +260,7 @@ class RandomFile {
 			}// end while
 		} // end try
 		catch (IOException e) {
+			System.out.print(e.getMessage());
 		}// end catch
 
 		return ppsExist;
@@ -280,6 +284,7 @@ class RandomFile {
 			}// end while
 		}// end try
 		catch (IOException e) {
+			System.out.print(e.getMessage());
 		}// end catch
 
 		return someoneToDisplay;

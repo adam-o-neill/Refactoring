@@ -910,6 +910,7 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 				file = newFile;// assign new file to file
 			} // end try
 			catch (IOException e) {
+				System.out.print(e.getMessage());
 			} // end catch
 		} // end if
 		changesMade = false;
