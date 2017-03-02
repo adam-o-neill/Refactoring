@@ -221,7 +221,7 @@ class RandomFile {
 
 	// Get object from file in specified position
 	public Employee readRecords(long byteToStart) {
-		Employee thisEmp = null;
+		Employee thisEmp;
 		RandomAccessEmployeeRecord record = new RandomAccessEmployeeRecord();
 
 		try {// try to read file and get record

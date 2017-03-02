@@ -68,7 +68,7 @@ class RandomAccessEmployeeRecord extends Employee
    private void writeName( RandomAccessFile file, String name )
       throws IOException
    {
-      StringBuffer buffer = null;
+      StringBuffer buffer;
 
       if ( name != null ) 
          buffer = new StringBuffer( name );
