@@ -138,59 +138,43 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 		JPanel searchPanel = new JPanel(new MigLayout());
 
 		searchPanel.setBorder(BorderFactory.createTitledBorder("Search"));
-		searchPanel.add(new JLabel("Search by ID:"), "growx, pushx");
-		searchPanel.add(searchByIdField = new JTextField(20), "width 200:200:200, growx, pushx");
-		searchByIdField.addActionListener(this);
-		searchByIdField.setDocument(new JTextFieldLimit(20));
-		searchPanel.add(searchId = new JButton(new ImageIcon(
-				new ImageIcon("imgres.png").getImage().getScaledInstance(35, 20, java.awt.Image.SCALE_SMOOTH))),
-				"width 35:35:35, height 20:20:20, growx, pushx, wrap");
-		searchId.addActionListener(this);
-		searchId.setToolTipText("Search Employee By ID");
-
-		searchPanel.add(new JLabel("Search by Surname:"), "growx, pushx");
-		searchPanel.add(searchBySurnameField = new JTextField(20), "width 200:200:200, growx, pushx");
-		searchBySurnameField.addActionListener(this);
-		searchBySurnameField.setDocument(new JTextFieldLimit(20));
-		searchPanel.add(
-				searchSurname = new JButton(new ImageIcon(new ImageIcon("imgres.png").getImage()
-						.getScaledInstance(35, 20, java.awt.Image.SCALE_SMOOTH))),
-				"width 35:35:35, height 20:20:20, growx, pushx, wrap");
-		searchSurname.addActionListener(this);
-		searchSurname.setToolTipText("Search Employee By Surname");
+		addSearch(searchPanel, searchByIdField, searchId, "ID");
+		addSearch(searchPanel, searchBySurnameField, searchSurname, "Surname");
 
 		return searchPanel;
+	}
+
+	private void addSearch(JPanel searchPanel, JTextField jTextField, JButton jButton, String name) {
+		searchPanel.add(new JLabel("Search by " + name + ":"), "growx, pushx");
+		searchPanel.add(jTextField = new JTextField(20), "width 200:200:200, growx, pushx");
+		jTextField.addActionListener(this);
+		jTextField.setDocument(new JTextFieldLimit(20));
+		searchPanel.add(jButton = new JButton(new ImageIcon(
+				new ImageIcon("imgres.png").getImage().getScaledInstance(35, 20, java.awt.Image.SCALE_SMOOTH))),
+				"width 35:35:35, height 20:20:20, growx, pushx, wrap");
+		jButton.addActionListener(this);
+		jButton.setToolTipText("Search Employee By " + name);
 	}
 
 	private JPanel navigPanel() {
 		JPanel navigPanel = new JPanel();
 
 		navigPanel.setBorder(BorderFactory.createTitledBorder("Navigate"));
-		navigPanel.add(first = new JButton(new ImageIcon(
-				new ImageIcon("first.png").getImage().getScaledInstance(17, 17, java.awt.Image.SCALE_SMOOTH))));
-		first.setPreferredSize(new Dimension(17, 17));
-		first.addActionListener(this);
-		first.setToolTipText("Display first Record");
 
-		navigPanel.add(previous = new JButton(new ImageIcon(new ImageIcon("previous.png").getImage()
-				.getScaledInstance(17, 17, java.awt.Image.SCALE_SMOOTH))));
-		previous.setPreferredSize(new Dimension(17, 17));
-		previous.addActionListener(this);
-		previous.setToolTipText("Display next Record");
-
-		navigPanel.add(next = new JButton(new ImageIcon(
-				new ImageIcon("next.png").getImage().getScaledInstance(17, 17, java.awt.Image.SCALE_SMOOTH))));
-		next.setPreferredSize(new Dimension(17, 17));
-		next.addActionListener(this);
-		next.setToolTipText("Display previous Record");
-
-		navigPanel.add(last = new JButton(new ImageIcon(
-				new ImageIcon("last.png").getImage().getScaledInstance(17, 17, java.awt.Image.SCALE_SMOOTH))));
-		last.setPreferredSize(new Dimension(17, 17));
-		last.addActionListener(this);
-		last.setToolTipText("Display last Record");
+		addNavigButtons(navigPanel, first, "first");
+		addNavigButtons(navigPanel, previous, "previous");
+		addNavigButtons(navigPanel, next, "next");
+		addNavigButtons(navigPanel, last, "last");
 
 		return navigPanel;
+	}
+
+	private void addNavigButtons(JPanel navigPanel, JButton button, String name){
+		navigPanel.add(button = new JButton(new ImageIcon(
+				new ImageIcon(name + ".png").getImage().getScaledInstance(17, 17, java.awt.Image.SCALE_SMOOTH))));
+		first.setPreferredSize(new Dimension(17, 17));
+		first.addActionListener(this);
+		first.setToolTipText("Display " + name + " Record");
 	}
 
 	private JPanel buttonPanel() {
@@ -255,6 +239,12 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 
 		empDetails.add(buttonPanel, "span 2,growx, pushx,wrap");
 
+		forEachEmpDetails(empDetails);
+		return empDetails;
+	}
+
+	private void forEachEmpDetails(JPanel empDetails) {
+		JTextField field;
 		for (int i = 0; i < empDetails.getComponentCount(); i++) {
 			empDetails.getComponent(i).setFont(font1);
 			if (empDetails.getComponent(i) instanceof JTextField) {
@@ -279,7 +269,6 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 				});
 			}
 		}
-		return empDetails;
 	}
 
 	public void displayRecords(Employee thisEmployee) {
@@ -547,6 +536,14 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 		firstRecord();
 		firstId = currentEmployee.getEmployeeId();
 
+		addEmployees(allEmployee, firstId);
+		currentByteStart = byteStart;
+
+		return allEmployee;
+	}
+
+	private void addEmployees(Vector<Object> allEmployee, int firstId) {
+		Vector<Object> empDetails;
 		do {
 			empDetails = new Vector<>();
 			empDetails.addElement(currentEmployee.getEmployeeId());
@@ -561,9 +558,6 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 			allEmployee.addElement(empDetails);
 			nextRecord();
 		} while (firstId != currentEmployee.getEmployeeId());
-		currentByteStart = byteStart;
-
-		return allEmployee;
 	}
 
 	private void editDetails() {
@@ -604,13 +598,13 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 	}
 
 	public boolean correctPps(String pps, long currentByte) {
-		boolean ppsExist;
+		boolean ppsExist = true;
 
 		if (pps.length() == 8 || pps.length() == 9) {
 			if (Character.isDigit(pps.charAt(0)) && Character.isDigit(pps.charAt(1))
-					&& Character.isDigit(pps.charAt(2))	&& Character.isDigit(pps.charAt(3)) 
-					&& Character.isDigit(pps.charAt(4))	&& Character.isDigit(pps.charAt(5)) 
-					&& Character.isDigit(pps.charAt(6))	&& Character.isLetter(pps.charAt(7))
+					&& Character.isDigit(pps.charAt(2)) && Character.isDigit(pps.charAt(3))
+					&& Character.isDigit(pps.charAt(4)) && Character.isDigit(pps.charAt(5))
+					&& Character.isDigit(pps.charAt(6)) && Character.isLetter(pps.charAt(7))
 					&& (pps.length() == 8 || Character.isLetter(pps.charAt(8)))) {
 
 				application.openReadFile(file.getAbsolutePath());
@@ -618,11 +612,7 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 				ppsExist = application.isPpsExist(pps, currentByte);
 				application.closeReadFile();
 			}
-			else
-				ppsExist = true;
 		}
-		else
-			ppsExist = true;
 
 		return ppsExist;
 	}

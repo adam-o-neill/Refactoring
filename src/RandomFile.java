@@ -53,9 +53,7 @@ class RandomFile {
 		RandomAccessEmployeeRecord record;
 		try
 		{
-			record = new RandomAccessEmployeeRecord(employeeToAdd.getEmployeeId(), employeeToAdd.getPps(),
-					employeeToAdd.getSurname(), employeeToAdd.getFirstName(), employeeToAdd.getGender(),
-					employeeToAdd.getDepartment(), employeeToAdd.getSalary(), employeeToAdd.getFullTime());
+			record = getRandomAccessEmployeeRecord(employeeToAdd);
 
 			output.seek(output.length());
 			record.write(output);
@@ -68,13 +66,20 @@ class RandomFile {
 		return currentRecordStart - RandomAccessEmployeeRecord.SIZE;
 	}
 
+	private RandomAccessEmployeeRecord getRandomAccessEmployeeRecord(Employee employeeToAdd) {
+		RandomAccessEmployeeRecord record;
+		record = new RandomAccessEmployeeRecord(employeeToAdd.getEmployeeId(), employeeToAdd.getPps(),
+                employeeToAdd.getSurname(), employeeToAdd.getFirstName(), employeeToAdd.getGender(),
+                employeeToAdd.getDepartment(), employeeToAdd.getSalary(), employeeToAdd.getFullTime());
+		return record;
+	}
+
+
 	public void changeRecords(Employee newDetails, long byteToStart) {
 		RandomAccessEmployeeRecord record;
 		try
 		{
-			record = new RandomAccessEmployeeRecord(newDetails.getEmployeeId(), newDetails.getPps(),
-					newDetails.getSurname(), newDetails.getFirstName(), newDetails.getGender(),
-					newDetails.getDepartment(), newDetails.getSalary(), newDetails.getFullTime());
+			record = getRandomAccessEmployeeRecord(newDetails);
 
 			output.seek(byteToStart);
 			record.write(output);

@@ -118,47 +118,49 @@ class AddRecordDialog extends JDialog implements ActionListener {
 		this.parent.displayRecords(theEmployee);
 	}
 
+	private static final Color errorColor = new Color(255, 150, 150);
+
 	private boolean checkInput() {
 		boolean valid = true;
 
 		if (ppsField.getText().equals("")) {
-			ppsField.setBackground(new Color(255, 150, 150));
+			ppsField.setBackground(errorColor);
 			valid = false;
 		}
 		if (this.parent.correctPps(this.ppsField.getText().trim(), -1)) {
-			ppsField.setBackground(new Color(255, 150, 150));
+			ppsField.setBackground(errorColor);
 			valid = false;
 		}
 		if (surnameField.getText().isEmpty()) {
-			surnameField.setBackground(new Color(255, 150, 150));
+			surnameField.setBackground(errorColor);
 			valid = false;
 		}
 		if (firstNameField.getText().isEmpty()) {
-			firstNameField.setBackground(new Color(255, 150, 150));
+			firstNameField.setBackground(errorColor);
 			valid = false;
 		}
 		if (genderCombo.getSelectedIndex() == 0) {
-			genderCombo.setBackground(new Color(255, 150, 150));
+			genderCombo.setBackground(errorColor);
 			valid = false;
 		}
 		if (departmentCombo.getSelectedIndex() == 0) {
-			departmentCombo.setBackground(new Color(255, 150, 150));
+			departmentCombo.setBackground(errorColor);
 			valid = false;
 		}
 		try {
 			Double.parseDouble(salaryField.getText());
 
 			if (Double.parseDouble(salaryField.getText()) < 0) {
-				salaryField.setBackground(new Color(255, 150, 150));
+				salaryField.setBackground(errorColor);
 				valid = false;
 			}
 		}
 		catch (NumberFormatException num) {
-			salaryField.setBackground(new Color(255, 150, 150));
+			salaryField.setBackground(errorColor);
 			valid = false;
 		}
 		if (fullTimeCombo.getSelectedIndex() == 0) {
-			fullTimeCombo.setBackground(new Color(255, 150, 150));
+			fullTimeCombo.setBackground(errorColor);
 			valid = false;
 		}
 		return valid;
