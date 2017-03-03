@@ -138,17 +138,19 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 		JPanel searchPanel = new JPanel(new MigLayout());
 
 		searchPanel.setBorder(BorderFactory.createTitledBorder("Search"));
-		addSearch(searchPanel, searchByIdField, searchId, "ID");
-		addSearch(searchPanel, searchBySurnameField, searchSurname, "Surname");
+		addSearch(searchPanel, "ID");
+		addSearch(searchPanel, "Surname");
 
 		return searchPanel;
 	}
 
-	private void addSearch(JPanel searchPanel, JTextField jTextField, JButton jButton, String name) {
+	private void addSearch(JPanel searchPanel, String name) {
 		searchPanel.add(new JLabel("Search by " + name + ":"), "growx, pushx");
+		JTextField jTextField;
 		searchPanel.add(jTextField = new JTextField(20), "width 200:200:200, growx, pushx");
 		jTextField.addActionListener(this);
 		jTextField.setDocument(new JTextFieldLimit(20));
+		JButton jButton;
 		searchPanel.add(jButton = new JButton(new ImageIcon(
 				new ImageIcon("imgres.png").getImage().getScaledInstance(35, 20, java.awt.Image.SCALE_SMOOTH))),
 				"width 35:35:35, height 20:20:20, growx, pushx, wrap");
@@ -161,16 +163,16 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 
 		navigPanel.setBorder(BorderFactory.createTitledBorder("Navigate"));
 
-		addNavigButtons(navigPanel, first, "first");
-		addNavigButtons(navigPanel, previous, "previous");
-		addNavigButtons(navigPanel, next, "next");
-		addNavigButtons(navigPanel, last, "last");
+		addNavigButtons(navigPanel, "first");
+		addNavigButtons(navigPanel, "previous");
+		addNavigButtons(navigPanel, "next");
+		addNavigButtons(navigPanel, "last");
 
 		return navigPanel;
 	}
 
-	private void addNavigButtons(JPanel navigPanel, JButton button, String name){
-		navigPanel.add(button = new JButton(new ImageIcon(
+	private void addNavigButtons(JPanel navigPanel, String name){
+		navigPanel.add(new JButton(new ImageIcon(
 				new ImageIcon(name + ".png").getImage().getScaledInstance(17, 17, java.awt.Image.SCALE_SMOOTH))));
 		first.setPreferredSize(new Dimension(17, 17));
 		first.addActionListener(this);
