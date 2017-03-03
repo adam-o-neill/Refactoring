@@ -201,7 +201,6 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 	private JPanel detailsPanel() {
 		JPanel empDetails = new JPanel(new MigLayout());
 		JPanel buttonPanel = new JPanel();
-		JTextField field;
 
 		empDetails.setBorder(BorderFactory.createTitledBorder("Employee Details"));
 
@@ -433,7 +432,7 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 			}
 		}
 		catch (NumberFormatException e) {
-			searchByIdField.setBackground(new Color(255, 150, 150));
+			searchByIdField.setBackground(errorColor);
 			JOptionPane.showMessageDialog(null, "Wrong ID format!");
 		}
 		searchByIdField.setBackground(Color.WHITE);
@@ -647,50 +646,51 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 		return anyChanges;
 	}
 
+	private static final Color errorColor = new Color(255, 150, 150);
+
 	private boolean checkInput() {
 		boolean valid = true;
 
-
 		if (ppsField.isEditable() && ppsField.getText().trim().isEmpty()) {
-			ppsField.setBackground(new Color(255, 150, 150));
+			ppsField.setBackground(errorColor);
 			valid = false;
 		}
 		if (ppsField.isEditable() && correctPps(ppsField.getText().trim(), currentByteStart)) {
-			ppsField.setBackground(new Color(255, 150, 150));
+			ppsField.setBackground(errorColor);
 			valid = false;
 		}
 		if (surnameField.isEditable() && surnameField.getText().trim().isEmpty()) {
-			surnameField.setBackground(new Color(255, 150, 150));
+			surnameField.setBackground(errorColor);
 			valid = false;
 		}
 		if (firstNameField.isEditable() && firstNameField.getText().trim().isEmpty()) {
-			firstNameField.setBackground(new Color(255, 150, 150));
+			firstNameField.setBackground(errorColor);
 			valid = false;
 		}
 		if (genderCombo.getSelectedIndex() == 0 && genderCombo.isEnabled()) {
-			genderCombo.setBackground(new Color(255, 150, 150));
+			genderCombo.setBackground(errorColor);
 			valid = false;
 		}
 		if (departmentCombo.getSelectedIndex() == 0 && departmentCombo.isEnabled()) {
-			departmentCombo.setBackground(new Color(255, 150, 150));
+			departmentCombo.setBackground(errorColor);
 			valid = false;
 		}
 		try {
 			Double.parseDouble(salaryField.getText());
 
 			if (Double.parseDouble(salaryField.getText()) < 0) {
-				salaryField.setBackground(new Color(255, 150, 150));
+				salaryField.setBackground(errorColor);
 				valid = false;
 			}
 		}
 		catch (NumberFormatException num) {
 			if (salaryField.isEditable()) {
-				salaryField.setBackground(new Color(255, 150, 150));
+				salaryField.setBackground(errorColor);
 				valid = false;
 			}
 		}
 		if (fullTimeCombo.getSelectedIndex() == 0 && fullTimeCombo.isEnabled()) {
-			fullTimeCombo.setBackground(new Color(255, 150, 150));
+			fullTimeCombo.setBackground(errorColor);
 			valid = false;
 		}
 

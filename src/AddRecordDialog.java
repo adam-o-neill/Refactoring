@@ -15,16 +15,9 @@ import javax.swing.JTextField;
 import net.miginfocom.swing.MigLayout;
 
 class AddRecordDialog extends JDialog implements ActionListener {
-	private JTextField idField;
-	private JTextField ppsField;
-	private JTextField surnameField;
-	private JTextField firstNameField;
-	private JTextField salaryField;
-	private JComboBox<String> genderCombo;
-	private JComboBox<String> departmentCombo;
-	private JComboBox<String> fullTimeCombo;
-	private JButton save;
-	private JButton cancel;
+	private JTextField idField, ppsField, surnameField, firstNameField, salaryField;
+	private JComboBox<String> genderCombo, departmentCombo, fullTimeCombo;
+	private JButton save, cancel;
 	private final EmployeeDetails parent;
 
 	public AddRecordDialog(EmployeeDetails parent) {
