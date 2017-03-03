@@ -1,4 +1,4 @@
-# Refactoring
+# Documentation
 <h2>Commit 1</h2>
 <h3>Removed Declaration Redundancy</h3>
 Example:
