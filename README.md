@@ -33,4 +33,12 @@ Example:
 <h3>Java Migration Aids</h3>
 Example:
 <image src="img/7.PNG"/>
+<br>
 <image src="img/7.1.PNG"/>
+
+<h2>Commit 8</h2>
+<h3>Removed duplicate code inside classes</h3>
+Example:
+<image src="img/8.PNG"/>
+<br>
+<image src="img/8.1.PNG"/>
